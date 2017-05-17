@@ -1,12 +1,15 @@
 fileFormatVersion: 2
 guid: d817c9cb4c665304cb61086ce6ee6475
-timeCreated: 1494905860
+timeCreated: 1494944891
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: 0 hits
     21300002: LeftBrick
     21300004: RightBrick
+    21300006: 0 hit
+    21300008: 1 hit
+    21300010: 2 hit
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,11 +84,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0 hits
+      name: 0 hit
       rect:
         serializedVersion: 2
         x: 0
-        y: 84
+        y: 127
         width: 128
         height: 41
       alignment: 0
@@ -98,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 41
+        y: 84
         width: 60
         height: 41
       alignment: 0
@@ -111,9 +114,35 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 62
-        y: 41
-        width: 65
+        y: 84
+        width: 64
         height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 1 hit
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 43
+        width: 128
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 2 hit
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 128
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

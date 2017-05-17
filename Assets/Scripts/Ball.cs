@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
 	private Paddle paddle;
-
+    private AudioSource thisAudio;
 	private bool hasStarted = false;
 	private Vector3 paddleToBallVector;
 	private Rigidbody2D thisRigid;
@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour {
 	void Start ()
 	{
 		paddle = GameObject.FindObjectOfType<Paddle>();
+        thisAudio = this.GetComponent<AudioSource>();
 		thisRigid = GetComponent<Rigidbody2D>();
 		paddleToBallVector = this.transform.position - paddle.transform.position;
 	}
@@ -30,4 +31,13 @@ public class Ball : MonoBehaviour {
 
 
 	}
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        Vector2 tweak = new Vector2(Random.Range(0f, 0.2f), Random.Range(0f, 0.2f));
+        print(tweak);
+        if (hasStarted) {
+            thisAudio.Play();
+            thisRigid.velocity += tweak;
+        }
+    }
 }

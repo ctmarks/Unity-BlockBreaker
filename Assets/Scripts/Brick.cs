@@ -5,21 +5,21 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
+    public int timesHit;
     public Sprite[] hitSprites;
-    public AudioClip crack;
 
     private LevelManager levelManager;
-    private bool isBreakable;
-    private int timesHit;
+    private bool isBreakable; 
 
+    
 
-
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         isBreakable = (this.tag == "Breakable");
         //Keep track of breakable bricks
         if (isBreakable) {
             breakableCount++;
+            print(breakableCount);
         }
 
         levelManager = FindObjectOfType<LevelManager>();
@@ -32,7 +32,7 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-        AudioSource.PlayClipAtPoint(crack, transform.position);
+        
         if (isBreakable) {
             HandleHits();
         }

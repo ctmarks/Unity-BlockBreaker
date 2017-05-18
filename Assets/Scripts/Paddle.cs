@@ -4,19 +4,40 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public bool autoPlay = false;
+    private Ball ball;
+
+    void Start() {
+        ball = GameObject.FindObjectOfType<Ball>();
+        print(ball);
+    }
+
 	// Update is called once per frame
 	void Update () {
-		Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
-
-		float mousePosInBlocks = Input.mousePosition.x / Screen.width * 16f;
-
-		paddlePos.x = mousePosInBlocks;
-		this.transform.position = paddlePos;
-		this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 0.5f, 15.5f), this.transform.position.y, this.transform.position.z);
+        if(!autoPlay) {
+            MoveWithMouse();
+        } else {
+            AutoPlay();
+        }
 	}
+
+    void MoveWithMouse() {
+        Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
+
+        float mousePosInBlocks = Input.mousePosition.x / Screen.width * 16f;
+
+        paddlePos.x = mousePosInBlocks;
+        this.transform.position = paddlePos;
+        this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 0.5f, 15.5f), this.transform.position.y, this.transform.position.z);
+    }
+
+    void AutoPlay() {
+        Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
+
+        Vector3 ballPos = ball.transform.position;
+
+        paddlePos.x = ballPos.x;
+        this.transform.position = paddlePos;
+        this.transform.position = new Vector3(Mathf.Clamp(ballPos.x, 0.5f, 15.5f), this.transform.position.y, this.transform.position.z);
+    }
 }

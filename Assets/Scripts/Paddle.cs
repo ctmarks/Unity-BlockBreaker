@@ -28,7 +28,7 @@ public class Paddle : MonoBehaviour {
 
         paddlePos.x = mousePosInBlocks;
         this.transform.position = paddlePos;
-        this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 0.5f, 15.5f), this.transform.position.y, this.transform.position.z);
+        this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 1f, 15f), this.transform.position.y, this.transform.position.z);
     }
 
     void AutoPlay() {
@@ -38,6 +38,6 @@ public class Paddle : MonoBehaviour {
 
         paddlePos.x = ballPos.x;
         this.transform.position = paddlePos;
-        this.transform.position = new Vector3(Mathf.Clamp(ballPos.x, 0.5f, 15.5f), this.transform.position.y, this.transform.position.z);
+        this.transform.position = new Vector3(Mathf.Clamp(ballPos.x, 1f, 15f), this.transform.position.y, this.transform.position.z);
     }
 }

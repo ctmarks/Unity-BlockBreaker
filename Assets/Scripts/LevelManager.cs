@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
 	public void LoadLevel(string sceneName){
+        Brick.breakableCount = 0;
 		Debug.Log("Level load requested for: " + sceneName);
 		SceneManager.LoadScene(sceneName);
 	}
 
 	public void LoadNextLevel(){
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Brick.breakableCount = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		print("Load next level");
 	}
 

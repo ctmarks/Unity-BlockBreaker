@@ -7,7 +7,9 @@ public class Brick : MonoBehaviour {
     public static int breakableCount = 0;
     public Sprite[] hitSprites;
     public AudioClip crack;
+    public GameObject smoke;
 
+    private Color spriteColor;
     private LevelManager levelManager;
     private bool isBreakable;
     private int timesHit;
@@ -22,6 +24,7 @@ public class Brick : MonoBehaviour {
             breakableCount++;
         }
 
+        spriteColor = GetComponent<SpriteRenderer>().color;
         levelManager = FindObjectOfType<LevelManager>();
 		timesHit = 0;
 	}
@@ -44,10 +47,17 @@ public class Brick : MonoBehaviour {
         if (timesHit >= maxHits) {
             breakableCount--;
             levelManager.BrickDestroyed();
+            PuffSmoke();
             Destroy(gameObject);
         } else {
             LoadSprites();
         }
+    }
+
+    void PuffSmoke () {
+        GameObject smokePuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
+        var main = smokePuff.GetComponent<ParticleSystem>().main;
+        main.startColor = spriteColor;
     }
 
 	//TODO Remove this method once we can actully win!

@@ -8,11 +8,13 @@ public class Brick : MonoBehaviour {
     public Sprite[] hitSprites;
     public AudioClip crack;
     public GameObject smoke;
+    public int maxHits;
 
     private Color spriteColor;
     private LevelManager levelManager;
     private bool isBreakable;
     private int timesHit;
+    private SpriteRenderer cracked;
 
 
 
@@ -24,6 +26,7 @@ public class Brick : MonoBehaviour {
             breakableCount++;
         }
 
+        cracked = transform.GetChild(0).GetComponent<SpriteRenderer>();
         spriteColor = GetComponent<SpriteRenderer>().color;
         levelManager = FindObjectOfType<LevelManager>();
 		timesHit = 0;
@@ -43,7 +46,6 @@ public class Brick : MonoBehaviour {
 
     void HandleHits() {
         timesHit++;
-        int maxHits = hitSprites.Length + 1;
         if (timesHit >= maxHits) {
             breakableCount--;
             levelManager.BrickDestroyed();
@@ -66,12 +68,6 @@ public class Brick : MonoBehaviour {
 	}
 
     void LoadSprites() {
-        int spriteIndex = timesHit - 1;
-        if (hitSprites[spriteIndex]) {
-            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
-        } else {
-            Debug.LogError("Missing Sprite");
-        }
-        
+        cracked.enabled = true;
     }
 }

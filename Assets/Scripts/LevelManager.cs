@@ -19,7 +19,12 @@ public class LevelManager : MonoBehaviour {
 
 	public void Quit(){
 		Debug.Log("Quit Application");
-		Application.Quit();
+        if (Application.isEditor) {
+            UnityEditor.EditorApplication.isPlaying = false;
+        } else if (!Application.isEditor) {
+            Application.Quit();
+        }
+		
 	}
 
     public void BrickDestroyed() {

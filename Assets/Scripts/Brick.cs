@@ -5,7 +5,6 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
-    public Sprite[] hitSprites;
     public AudioClip crack;
     public GameObject smoke;
     public int maxHits;
@@ -26,14 +25,13 @@ public class Brick : MonoBehaviour {
             breakableCount++;
         }
 
+        timesHit = 0;
+
         cracked = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
         spriteColor = GetComponent<SpriteRenderer>().color;
+
         levelManager = FindObjectOfType<LevelManager>();
-		timesHit = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
 		
 	}
 
@@ -68,6 +66,12 @@ public class Brick : MonoBehaviour {
 	}
 
     void LoadSprites() {
-        cracked.enabled = true;
+        if(timesHit >= 1) {
+            cracked.enabled = true;
+        } else if (timesHit >= 2) {
+            cracked.enabled = false;
+            //cracked2.enabled = true;
+        }
+        
     }
 }

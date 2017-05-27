@@ -5,11 +5,11 @@ using UnityEngine;
 public class Paddle : MonoBehaviour {
 
     public bool autoPlay = false;
+
     private Ball ball;
 
     void Start() {
         ball = GameObject.FindObjectOfType<Ball>();
-        print(ball);
     }
 
 	// Update is called once per frame
@@ -22,13 +22,18 @@ public class Paddle : MonoBehaviour {
 	}
 
     void MoveWithMouse() {
-        Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
+        if (Pause.isPaused) {
 
-        float mousePosInBlocks = Input.mousePosition.x / Screen.width * 16f;
+        } else {
+            Vector3 paddlePos = new Vector3(0.5f, this.transform.position.y, 0f);
 
-        paddlePos.x = mousePosInBlocks;
-        this.transform.position = paddlePos;
-        this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 1.5f, 14.5f), this.transform.position.y, this.transform.position.z);
+            float mousePosInBlocks = Input.mousePosition.x / Screen.width * 16f;
+
+            paddlePos.x = mousePosInBlocks;
+            this.transform.position = paddlePos;
+            this.transform.position = new Vector3(Mathf.Clamp(paddlePos.x, 1.5f, 14.5f), this.transform.position.y, this.transform.position.z);
+        }
+        
     }
 
     void AutoPlay() {

@@ -6,7 +6,7 @@ public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
     public AudioClip crack;
-    public GameObject smoke;
+    public GameObject stars;
     public Sprite[] hitSprites;
     public int maxHits;
 
@@ -59,7 +59,7 @@ public class Brick : MonoBehaviour {
     }
 
     void PuffSmoke () {
-        GameObject smokePuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
+        GameObject smokePuff = Instantiate(stars, this.transform.position, Quaternion.identity) as GameObject;
         var main = smokePuff.GetComponent<ParticleSystem>().main;
         main.startColor = spriteColor;
     }

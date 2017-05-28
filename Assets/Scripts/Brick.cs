@@ -5,10 +5,10 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
-    public AudioClip crack;
-    public GameObject stars;
+    public AudioSource audioSource;
     public Sprite[] hitSprites;
     public int maxHits;
+    public GameObject stars;
 
     private Color spriteColor;
     private LevelManager levelManager;
@@ -31,6 +31,8 @@ public class Brick : MonoBehaviour {
 
         spriteIndex = 0;
 
+        audioSource = this.GetComponent<AudioSource>();
+
         spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         spriteColor = GetComponent<SpriteRenderer>().color;
@@ -40,7 +42,7 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-        AudioSource.PlayClipAtPoint(crack, transform.position);
+        ;
         if (isBreakable) {
             HandleHits();
         }

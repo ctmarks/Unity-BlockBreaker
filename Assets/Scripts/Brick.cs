@@ -5,11 +5,11 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
-    public AudioSource audioSource;
     public Sprite[] hitSprites;
     public int maxHits;
     public GameObject stars;
 
+    private AudioSource audioSource;
     private Color spriteColor;
     private LevelManager levelManager;
     private bool isBreakable;
@@ -42,7 +42,6 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
-        ;
         if (isBreakable) {
             HandleHits();
         }

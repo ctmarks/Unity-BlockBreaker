@@ -45,7 +45,7 @@ public class Brick : MonoBehaviour {
 	}
 
     void HandleHits() {
-        SFXManager.AudioSources["Crack"].Play();
+        SoundManager.SFX["Crack"].Play();
         timesHit++;
         if (timesHit >= maxHits) {
             breakableCount--;

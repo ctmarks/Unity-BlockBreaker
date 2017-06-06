@@ -8,8 +8,8 @@ public class PauseManager : MonoBehaviour {
 
     public GameObject optionsMenu;
     public static bool isPaused = false;
-    public AudioMixerSnapshot paused;
-    public AudioMixerSnapshot unPaused;
+
+    public SoundManager soundManager;
 
     void start() {
     }
@@ -35,14 +35,14 @@ public class PauseManager : MonoBehaviour {
         //pauseMenu.SetActive(true);
         isPaused = !isPaused;
         Cursor.visible = !Cursor.visible;
-        lowPass();
+        soundManager.TogglePauseSnapshot(isPaused);
        }
 
-    public void lowPass() {
-        if(Time.timeScale == 0) {
-            paused.TransitionTo(.01f);
-        } else {
-            unPaused.TransitionTo(.01f);
-        }
-    }
+    //public void lowPass() {
+    //    if(Time.timeScale == 0) {
+    //        paused.TransitionTo(.01f);
+    //    } else {
+    //        unPaused.TransitionTo(.01f);
+    //    }
+    //}
 }

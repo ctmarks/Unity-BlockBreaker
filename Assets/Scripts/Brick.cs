@@ -9,7 +9,6 @@ public class Brick : MonoBehaviour {
     public int maxHits;
     public GameObject stars;
 
-    private AudioSource audioSource;
     private Color spriteColor;
     private LevelManager levelManager;
     private bool isBreakable;
@@ -31,8 +30,6 @@ public class Brick : MonoBehaviour {
 
         spriteIndex = 0;
 
-        audioSource = this.GetComponent<AudioSource>();
-
         spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         spriteColor = GetComponent<SpriteRenderer>().color;
@@ -48,6 +45,7 @@ public class Brick : MonoBehaviour {
 	}
 
     void HandleHits() {
+        SFXManager.AudioSources["Crack"].Play();
         timesHit++;
         if (timesHit >= maxHits) {
             breakableCount--;

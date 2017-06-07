@@ -48,13 +48,17 @@ public class Brick : MonoBehaviour {
 	}
 
     void HandleHits() {
+        animator.Play("DamageFlash");
         SoundManager.SFX["Crack"].Play();
         timesHit++;
         if (timesHit >= maxHits) {
-            breakableCount--;
-            levelManager.BrickDestroyed();
             PuffSmoke();
+            animator.Play("BrickTranslate");
+            animator.Play("BrickRotate");
             animator.Play("BrickDeath");
+            breakableCount--;
+            print(breakableCount);
+            levelManager.BrickDestroyed();
         } else {
             LoadSprites();
         }

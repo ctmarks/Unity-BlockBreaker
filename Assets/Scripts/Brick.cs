@@ -15,6 +15,7 @@ public class Brick : MonoBehaviour {
     private int timesHit;
     private int spriteIndex;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
 
 
@@ -35,6 +36,8 @@ public class Brick : MonoBehaviour {
         spriteColor = GetComponent<SpriteRenderer>().color;
 
         levelManager = FindObjectOfType<LevelManager>();
+
+        animator = this.GetComponent<Animator>();
 		
 	}
 
@@ -51,7 +54,7 @@ public class Brick : MonoBehaviour {
             breakableCount--;
             levelManager.BrickDestroyed();
             PuffSmoke();
-            Destroy(gameObject);
+            animator.Play("BrickDeath");
         } else {
             LoadSprites();
         }
@@ -71,5 +74,9 @@ public class Brick : MonoBehaviour {
     void LoadSprites() {
         spriteRenderer.sprite = hitSprites[spriteIndex];
         spriteIndex++;
+    }
+
+    void DestroySelf() {
+        Destroy(gameObject);
     }
 }

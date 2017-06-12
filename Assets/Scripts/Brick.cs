@@ -6,6 +6,8 @@ public class Brick : MonoBehaviour {
 
     public static int breakableCount = 0;
     public Sprite[] hitSprites;
+    public Color flashColor;
+    public float flashTime = 0.1f;
     public int maxHits;
     public GameObject stars;
 
@@ -27,18 +29,21 @@ public class Brick : MonoBehaviour {
             breakableCount++;
         }
 
+
+
         timesHit = 0;
 
         spriteIndex = 0;
 
         spriteRenderer = this.GetComponent<SpriteRenderer>();
 
+        this.GetComponent<SpriteRenderer>().color = Color.white;
+
         spriteColor = GetComponent<SpriteRenderer>().color;
 
         levelManager = FindObjectOfType<LevelManager>();
 
         animator = this.GetComponent<Animator>();
-		
 	}
 
 	void OnCollisionEnter2D (Collision2D col) {
@@ -47,14 +52,25 @@ public class Brick : MonoBehaviour {
         }
 	}
 
+
+    IEnumerator spriteFlasher() {
+        spriteRenderer.color = flashColor;
+
+        yield return new WaitForSeconds(flashTime);
+
+        //spriteRenderer.color = spriteColor;
+    }
+
     void HandleHits() {
-        animator.Play("DamageFlash");
+        GetComponent<SpriteRenderer>().color = Color.white;
+        //animator.Play("DamageFlash");
+        //StartCoroutine(spriteFlasher());
         SoundManager.SFX["Crack"].Play();
         timesHit++;
         if (timesHit >= maxHits) {
             PuffSmoke();
-            animator.Play("BrickTranslate");
-            animator.Play("BrickRotate");
+            //animator.Play("BrickTranslate");
+            //animator.Play("BrickRotate");
             animator.Play("BrickDeath");
             breakableCount--;
             print(breakableCount);
